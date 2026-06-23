@@ -71,7 +71,7 @@ src/
     NewStorySetup.tsx — logo fixed
   engine/            — emotion detection engine (6 files)
   api/
-    claudeClient.ts  — Groq API (4 calls)
+    langchainClient.ts — LangChain Groq pipeline
   types/
     emotion.ts       — shared types
 
