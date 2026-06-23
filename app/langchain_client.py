@@ -303,7 +303,7 @@ Human: Text: {text_window}"""
             {"candidates": candidates},
             prompt_schema,
             rendered_prompt,
-            json.dumps({"dominantEmotion": response.dominantEmotion}),
+            json.dumps({"emotion": response.emotion}),
             final_emotion,
             latency,
             True
@@ -522,7 +522,7 @@ Current text window: {text_window}"""
         )
         return None
 
-# 6. Image telemetry logger proxy helper
+# 6. Image telemetry logger helper
 def log_image_generation(recent_text: str, dominant: str, mood_hex: str, story_title: str, url: str):
     start_time = time.time()
     words = recent_text.strip().split()
