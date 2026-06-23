@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 6% 5%;
+    --foreground: 40 20% 88%;
+
+    --card: 30 5% 8%;
+    --card-foreground: 40 20% 88%;
+
+    --popover: 30 5% 8%;
+    --popover-foreground: 40 20% 88%;
+
+    --primary: 174 50% 45%;
+    --primary-foreground: 30 6% 5%;
+
+    --secondary: 30 4% 12%;
+    --secondary-foreground: 40 10% 70%;
+
+    --muted: 30 3% 10%;
+    --muted-foreground: 30 5% 42%;
+
+    --accent: 330 50% 48%;
+    --accent-foreground: 40 20% 92%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 40 20% 92%;
+
+    --border: 30 4% 14%;
+    --input: 30 4% 14%;
+    --ring: 174 50% 45%;
+
+    --radius: 0.25rem;
+
+    --chroma-teal: 174 50% 45%;
+    --chroma-amber: 35 80% 52%;
+    --chroma-crimson: 350 55% 42%;
+    --chroma-violet: 270 40% 48%;
+
+    --sidebar-background: 30 5% 7%;
+    --sidebar-foreground: 40 10% 70%;
+    --sidebar-primary: 174 50% 45%;
+    --sidebar-primary-foreground: 30 6% 5%;
+    --sidebar-accent: 30 4% 12%;
+    --sidebar-accent-foreground: 40 20% 88%;
+    --sidebar-border: 30 4% 14%;
+    --sidebar-ring: 174 50% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono antialiased;
+  }
+}
+
+@layer utilities {
+  .font-serif-display {
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+  }
+
+  .font-brand {
+    font-family: 'Playfair Display', 'Georgia', serif;
+  }
+
+  .font-mono-ui {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .text-gradient-chroma {
+    background: linear-gradient(
+      135deg,
+      hsl(174 50% 45%),
+      hsl(270 40% 48%),
+      hsl(350 55% 42%)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Breathing hero gradient — deep cinematic tones */
+  .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(220 30% 6%) 0%,
+      hsl(270 35% 10%) 20%,
+      hsl(350 40% 10%) 40%,
+      hsl(35 50% 10%) 60%,
+      hsl(174 40% 8%) 80%,
+      hsl(220 30% 6%) 100%
+    );
+    background-size: 400% 400%;
+    animation: hero-breathe 12s ease-in-out infinite;
+  }
+
+  @keyframes hero-breathe {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 100%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 0%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Hide scrollbar for horizontal scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Noise/grain texture overlay */
+  .grain-overlay::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
+
+  .card-grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
+
+  /* Mood gradient backgrounds for cards */
+  .mood-melancholy {
+    background: linear-gradient(160deg, hsl(270 40% 10%), hsl(240 30% 14%), hsl(270 35% 8%));
+  }
+  .mood-resolve {
+    background: linear-gradient(160deg, hsl(35 50% 10%), hsl(20 40% 12%), hsl(35 40% 7%));
+  }
+  .mood-curiosity {
+    background: linear-gradient(160deg, hsl(174 40% 10%), hsl(190 35% 12%), hsl(174 35% 7%));
+  }
+  .mood-tension {
+    background: linear-gradient(160deg, hsl(350 45% 10%), hsl(340 35% 13%), hsl(350 40% 7%));
+  }
+  .mood-wonder {
+    background: linear-gradient(160deg, hsl(260 40% 11%), hsl(200 35% 13%), hsl(270 35% 8%));
+  }
+  .mood-serenity {
+    background: linear-gradient(160deg, hsl(35 40% 10%), hsl(120 20% 11%), hsl(40 30% 7%));
+  }
+
+  /* Subtle glow */
+  .glow-teal {
+    box-shadow: 0 0 30px hsl(174 50% 45% / 0.1);
+  }
+
+  /* Thin elegant scrollbars */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.12);
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.22);
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.12) transparent;
+  }
+
+}
